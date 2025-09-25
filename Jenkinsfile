@@ -1,10 +1,13 @@
 pipeline {
-  agent {
-    docker {
-      image 'mcr.microsoft.com/playwright:v1.55.0-noble'
-    }
-  }
+  agent any 
+
   stages {
+    stage('Checkout') {
+        steps {
+            git 'https://github.com/nikolajovancevic-pixel/playwright-jenkins.git'
+        }
+    }
+
     stage ('install playwright') {
       steps {
         sh '''
@@ -20,5 +23,10 @@ pipeline {
         '''
       }
     }
-}
+  }
+  post {
+      always {
+          echo 'Build finished!'
+      }
+  }
 }
