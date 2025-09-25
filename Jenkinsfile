@@ -4,7 +4,10 @@ pipeline {
   stages {
     stage('Checkout') {
         steps {
-          git branch: 'main', url: 'https://github.com/nikolajovancevic-pixel/playwright-jenkins.git'        }
+          git url: 'https://github.com/nikolajovancevic-pixel/playwright-jenkins.git',        
+              branch: 'main',
+              credentialsId: 'gitlab-work-token'  
+        }
     }
 
     stage ('install playwright') {
