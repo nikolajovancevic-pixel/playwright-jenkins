@@ -9,17 +9,13 @@ pipeline {
 
     stage ('install playwright') {
       steps {
-        sh '''
-          npm i -D @playwright/test
-          npx playwright install
-        '''
+        bat 'npm ci'
+        bat 'npx playwright install'
       }
     }
     stage ('run test') {
       steps {
-        sh '''
-          npx playwright test
-        '''
+          bat 'npx playwright test'
       }
     }
   }
