@@ -6,18 +6,19 @@ pipeline {
   }
   stages {
     stage ('install playwright') {
-      sh '''
-        npm i -D @playwright/test
-        npx playwright install
-      '''
-    }
-    stage('test') {
       steps {
         sh '''
-          npx playwright test --list
+          npm i -D @playwright/test
+          npx playwright install
+        '''
+      }
+    }
+    stage ('run test') {
+      steps {
+        sh '''
           npx playwright test
         '''
       }
     }
-  }
+}
 }
